@@ -1,0 +1,14 @@
+.boton-tema {
+  background: var(--acento);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.boton-tema:hover {
+  background: var(--acento-hover);
+}
