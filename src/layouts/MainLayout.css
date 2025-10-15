@@ -1,0 +1,39 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--fondo);
+  color: var(--texto);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--header);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-app {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.acciones-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contenido-principal {
+  flex: 1;
+  padding: 2rem;
+}
+
+footer {
+  padding: 1rem;
+  background-color: var(--header);
+  text-align: center;
+}

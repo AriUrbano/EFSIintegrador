@@ -1,10 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+
+import Home from './pages/home';
+import Nuevo from './pages/Nuevo';
+import Resumen from './pages/Resumen';
+import Ajustes from './pages/Ajustes';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(1)
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="Nuevo" element={<Nuevo />} />
+          <Route path="Resumen" element={<Resumen />} />
+          <Route path="Ajustes" element={<Ajustes />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-
-export default App
+export default App;

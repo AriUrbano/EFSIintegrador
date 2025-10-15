@@ -1,0 +1,20 @@
+.navbar {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: var(--texto);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+  color: var(--acento);
+}
+
+.nav-item.active {
+  color: var(--acento);
+  font-weight: 700;
+}
