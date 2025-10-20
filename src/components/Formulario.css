@@ -1,0 +1,261 @@
+/* Contenedor principal del formulario */
+.formulario-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  /* Título del formulario */
+  .formulario-container h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+  }
+  
+  /* Formulario */
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  /* Cada campo del formulario */
+  .campo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Etiquetas */
+  .campo label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-size: 16px;
+  }
+  
+  /* Inputs y selects */
+  .campo input,
+  .campo select {
+    padding: 12px 15px;
+    border: 2px solid #bdc3c7;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+  }
+  
+  /* Efecto hover en inputs */
+  .campo input:hover,
+  .campo select:hover {
+    border-color: #3498db;
+  }
+  
+  /* Efecto focus en inputs */
+  .campo input:focus,
+  .campo select:focus {
+    outline: none;
+    border-color: #2980b9;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
+  
+  /* Inputs con error */
+  .campo input.error,
+  .campo select.error {
+    border-color: #e74c3c;
+    background-color: #fdf2f2;
+  }
+  
+  /* Inputs con error en focus */
+  .campo input.error:focus,
+  .campo select.error:focus {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  }
+  
+  /* Texto de error */
+  .error-text {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+  
+  /* Contenedor de botones */
+  .botones {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    justify-content: center;
+  }
+  
+  /* Estilos base para botones */
+  .btn {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Botón primario (Guardar/Actualizar) */
+  .btn-primary {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #229954, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  /* Botón secundario (Cancelar) */
+  .btn-secondary {
+    background: linear-gradient(135deg, #95a5a6, #bdc3c7);
+    color: white;
+    box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+  }
+  
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+  }
+  
+  .btn-secondary:active {
+    transform: translateY(0);
+  }
+  
+  /* Efectos de deshabilitado */
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+  
+  /* Estilos específicos para tipos de inputs */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="date"] {
+    cursor: pointer;
+  }
+  
+  /* Estilos para el select */
+  .campo select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 40px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .formulario-container {
+      margin: 10px;
+      padding: 15px;
+    }
+    
+    .formulario-container h2 {
+      font-size: 24px;
+    }
+    
+    .botones {
+      flex-direction: column;
+    }
+    
+    .btn {
+      min-width: auto;
+      width: 100%;
+    }
+    
+    .campo input,
+    .campo select {
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .formulario-container {
+      margin: 5px;
+      padding: 10px;
+    }
+    
+    .formulario-container h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Animaciones suaves */
+  .formulario-container {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Estados de carga */
+  .cargando {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  /* Mensaje de éxito (opcional para futuras mejoras) */
+  .mensaje-exito {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
