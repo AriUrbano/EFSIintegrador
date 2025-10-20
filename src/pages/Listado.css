@@ -1,0 +1,89 @@
+.listado-container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+.sin-movimientos {
+  text-align: center;
+  color: #777;
+  font-size: 1rem;
+}
+
+.lista-movimientos {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.movimiento-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.movimiento-item:hover {
+  transform: scale(1.01);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ingreso {
+  background-color: #e7f8ed;
+  border-color: #b9e3c3;
+}
+
+.gasto {
+  background-color: #fdeaea;
+  border-color: #f3b9b9;
+}
+
+.mov-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mov-descripcion {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.mov-categoria {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.mov-fecha {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.mov-monto {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.monto-ingreso {
+  color: #1b8a3c;
+}
+
+.monto-gasto {
+  color: #d63031;
+}
