@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { categorias } from '../data/data';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './FormularioPage.css';
 
-const Nuevo = () => {
-  const { agregarMovimiento } = useApp();
+const Editar = () => {
+  const { movimientos, actualizarMovimiento } = useApp();
   const navigate = useNavigate();
+  const { id } = useParams();
+  
+  const movimientoEditar = movimientos.find(m => m.id === id);
 
   const [formData, setFormData] = useState({
     descripcion: '',
     categoria: '',
     tipo: 'gasto',
     monto: '',
-    fecha: new Date().toISOString().split('T')[0]
+    fecha: ''
   });
 
   const [errores, setErrores] = useState({});
+
+  useEffect(() => {
+    if (movimientoEditar) {
+      setFormData({
+        descripcion: movimientoEditar.descripcion,
+        categoria: movimientoEditar.categoria,
+        tipo: movimientoEditar.tipo,
+        monto: movimientoEditar.monto,
+        fecha: movimientoEditar.fecha
+      });
+    }
+  }, [movimientoEditar]);
 
   const manejarCambio = (e) => {
     const { name, value } = e.target;
@@ -75,18 +90,32 @@ const Nuevo = () => {
         fecha: formData.fecha
       };
 
-      agregarMovimiento(datosMovimiento);
+      actualizarMovimiento(id, datosMovimiento);
       navigate('/');
       
     } catch (error) {
-      console.error('Error guardando movimiento:', error);
-      alert('Error al guardar el movimiento');
+      console.error('Error actualizando movimiento:', error);
+      alert('Error al actualizar el movimiento');
     }
   };
 
+  if (!movimientoEditar) {
+    return (
+      <div className="formulario-page">
+        <h1>Movimiento no encontrado</h1>
+        <button 
+          className="btn btn-secondary"
+          onClick={() => navigate('/')}
+        >
+          Volver al listado
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="formulario-page">
-      <h1>Nuevo Movimiento</h1>
+      <h1>Editar Movimiento</h1>
       
       <form onSubmit={manejarEnvio} className="formulario">
         <div className="campo">
@@ -166,7 +195,7 @@ const Nuevo = () => {
 
         <div className="botones">
           <button type="submit" className="btn btn-primary">
-            Guardar Movimiento
+            Actualizar Movimiento
           </button>
           <button 
             type="button" 
@@ -181,4 +210,4 @@ const Nuevo = () => {
   );
 };
 
-export default Nuevo;
+export default Editar;
