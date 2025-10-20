@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { movimientosIniciales, categorias } from "../data/data";
 import "./Listado.css";
 
-export const Listado = () => {
+const Listado = () => {  
   const [movimientos, setMovimientos] = useState([]);
 
   useEffect(() => {
@@ -31,9 +31,7 @@ export const Listado = () => {
           {movimientos.map((mov) => (
             <div
               key={mov.id}
-              className={`movimiento-item ${
-                mov.tipo === "ingreso" ? "ingreso" : "gasto"
-              }`}
+              className={`movimiento-item ${mov.tipo}`} // ← Agregar clase del tipo
             >
               <div className="mov-info">
                 <h3 className="mov-descripcion">{mov.descripcion}</h3>
@@ -58,3 +56,5 @@ export const Listado = () => {
     </div>
   );
 };
+
+export default Listado;

@@ -3,11 +3,17 @@ import "./Tema.css";
 
 function Tema() {
   const [modoOscuro, setModoOscuro] = useState(
-    localStorage.getItem("modoOscuro") === "true"
+    () => localStorage.getItem("modoOscuro") === "true"
   );
 
   useEffect(() => {
-    document.body.setAttribute("data-theme", modoOscuro ? "dark" : "light");
+    if (modoOscuro) {
+      document.body.classList.add("modo-oscuro");
+      document.body.classList.remove("modo-claro");
+    } else {
+      document.body.classList.add("modo-claro");
+      document.body.classList.remove("modo-oscuro");
+    }
     localStorage.setItem("modoOscuro", modoOscuro);
   }, [modoOscuro]);
 

@@ -1,22 +1,45 @@
-:root {
-  --fondo: #f4f4f4;
-  --texto: #222;
-  --header: #ffffff;
-  --acento: #3b82f6;
-  --acento-hover: #2563eb;
-}
-
-[data-theme="dark"] {
-  --fondo: #121212;
-  --texto: #f5f5f5;
-  --header: #1e1e1e;
-  --acento: #60a5fa;
-  --acento-hover: #93c5fd;
-}
-
-body {
-  background-color: var(--fondo);
-  color: var(--texto);
+/* Reset para ocupar toda la pantalla */
+* {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout principal que ocupa toda la pantalla */
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Contenido principal que se expande */
+.main-content {
+  flex: 1;
+  width: 100%;
+  padding: 0;
+}
+/* Asegurar que el modo oscuro aplique a toda la app */
+#root {
+  min-height: 100vh;
+}
+
+body.modo-oscuro #root {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+body.modo-claro #root {
+  background-color: #ffffff;
+  color: #333333;
 }

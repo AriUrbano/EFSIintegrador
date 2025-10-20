@@ -1,14 +1,183 @@
 .boton-tema {
-  background: var(--acento);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  padding: 10px 16px;
+  border-radius: 25px;
   cursor: pointer;
+  font-weight: 600;
   font-size: 0.9rem;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+  min-width: 100px;
 }
 
 .boton-tema:hover {
-  background: var(--acento-hover);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* MODO OSCURO - Colores con sentido */
+body.modo-oscuro {
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+/* Header en modo oscuro */
+body.modo-oscuro .header {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border-bottom: 1px solid #333;
+}
+
+/* Listado en modo oscuro */
+body.modo-oscuro .listado-container {
+  background: #121212;
+}
+
+body.modo-oscuro .movimiento-item {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #e0e0e0;
+}
+
+body.modo-oscuro .mov-descripcion {
+  color: #ffffff;
+}
+
+body.modo-oscuro .mov-categoria {
+  color: #bb86fc;
+  font-weight: 500;
+}
+
+body.modo-oscuro .mov-fecha {
+  color: #9e9e9e;
+}
+
+body.modo-oscuro .monto-ingreso {
+  color: #4caf50;
+}
+
+body.modo-oscuro .monto-gasto {
+  color: #f44336;
+}
+
+body.modo-oscuro .sin-movimientos {
+  color: #9e9e9e;
+}
+
+/* Formulario en modo oscuro */
+body.modo-oscuro .formulario-container {
+  background: #121212;
+}
+
+body.modo-oscuro .formulario {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+body.modo-oscuro .campo label {
+  color: #e0e0e0;
+}
+
+body.modo-oscuro .campo input,
+body.modo-oscuro .campo select {
+  background: #2d2d2d;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+body.modo-oscuro .campo input:focus,
+body.modo-oscuro .campo select:focus {
+  border-color: #bb86fc;
+  box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.2);
+}
+
+body.modo-oscuro .campo input::placeholder {
+  color: #9e9e9e;
+}
+
+/* Ajustes en modo oscuro */
+body.modo-oscuro .ajustes-container {
+  background: #121212;
+}
+
+body.modo-oscuro .ajuste-card {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+body.modo-oscuro .ajuste-header {
+  background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+}
+
+body.modo-oscuro .estado-datos {
+  background: #2d2d2d;
+  border-left-color: #bb86fc;
+}
+
+body.modo-oscuro .ajuste-descripcion {
+  color: #9e9e9e;
+}
+
+/* Botones en modo oscuro */
+body.modo-oscuro .btn {
+  color: white;
+}
+
+body.modo-oscuro .btn-primary {
+  background: linear-gradient(135deg, #bb86fc, #9c64e0);
+}
+
+body.modo-oscuro .btn-secondary {
+  background: linear-gradient(135deg, #666, #555);
+}
+
+body.modo-oscuro .btn-peligro {
+  background: linear-gradient(135deg, #cf6679, #b00020);
+}
+
+/* Footer en modo oscuro */
+body.modo-oscuro .footer {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border-top: 1px solid #333;
+}
+
+body.modo-oscuro .footer-section p,
+body.modo-oscuro .footer-section ul li a {
+  color: #9e9e9e;
+}
+
+body.modo-oscuro .footer-bottom {
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid #333;
+}
+
+/* Toggle switch en modo oscuro */
+body.modo-oscuro .toggle-slider {
+  background-color: #666;
+}
+
+body.modo-oscuro input:checked + .toggle-slider {
+  background-color: #bb86fc;
+}
+
+/* MODO CLARO (valores por defecto) */
+body.modo-claro {
+  background-color: #ffffff;
+  color: #333333;
+  transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .boton-tema {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    min-width: 90px;
+  }
 }

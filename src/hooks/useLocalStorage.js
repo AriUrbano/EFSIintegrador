@@ -12,7 +12,7 @@ export const useLocalStorage = (clave, valorInicial) => {
       }
       setCargando(false);
     } catch (error) {
-      console.log(`Error leyendo localStorage clave "${clave}":`, error);
+      console.log(`Error leyendo localStorage:`, error);
       setValorAlmacenado(valorInicial);
       setCargando(false);
     }
@@ -24,20 +24,21 @@ export const useLocalStorage = (clave, valorInicial) => {
       setValorAlmacenado(valorAAlmacenar);
       window.localStorage.setItem(clave, JSON.stringify(valorAAlmacenar));
     } catch (error) {
-      console.log(`Error guardando localStorage clave "${clave}":`, error);
+      console.log(`Error guardando localStorage:`, error);
     }
   };
 
   return [valorAlmacenado, setValor, cargando];
 };
 
+// Hook específico para movimientos - VERIFICAR QUE ESTÉ COMPLETO
 export const useAlmacenamientoMovimientos = () => {
   const [movimientos, setMovimientos, cargando] = useLocalStorage('movimientos', []);
 
   const agregarMovimiento = (movimiento) => {
     const nuevoMovimiento = {
       ...movimiento,
-      id: Date.now().toString(), 
+      id: Date.now().toString(), // ID único
       fecha: movimiento.fecha || new Date().toISOString().split('T')[0]
     };
     setMovimientos(prev => [...prev, nuevoMovimiento]);
@@ -46,44 +47,16 @@ export const useAlmacenamientoMovimientos = () => {
 
   const actualizarMovimiento = (id, movimientoActualizado) => {
     setMovimientos(prev => 
-      prev.map(movimiento => 
-        movimiento.id === id ? { ...movimientoActualizado, id } : movimiento
-      )
+      prev.map(mov => mov.id === id ? { ...movimientoActualizado, id } : mov)
     );
   };
 
   const eliminarMovimiento = (id) => {
-    setMovimientos(prev => prev.filter(movimiento => movimiento.id !== id));
+    setMovimientos(prev => prev.filter(mov => mov.id !== id));
   };
 
   const limpiarMovimientos = () => {
     setMovimientos([]);
-  };
-
-  const calcularTotales = () => {
-    const ingresos = movimientos
-      .filter(m => m.tipo === 'ingreso')
-      .reduce((suma, m) => suma + m.monto, 0);
-
-    const gastos = movimientos
-      .filter(m => m.tipo === 'gasto')
-      .reduce((suma, m) => suma + m.monto, 0);
-
-    const balance = ingresos - gastos;
-
-    return { ingresos, gastos, balance };
-  };
-
-  const formatearMoneda = (monto) => {
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS'
-    }).format(monto);
-  };
-
-  const formatearFecha = (fechaString) => {
-    const opciones = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return new Date(fechaString).toLocaleDateString('es-AR', opciones);
   };
 
   return {
@@ -92,9 +65,6 @@ export const useAlmacenamientoMovimientos = () => {
     actualizarMovimiento,
     eliminarMovimiento,
     limpiarMovimientos,
-    calcularTotales,
-    formatearMoneda,
-    formatearFecha,
     cargando
   };
 };
