@@ -191,3 +191,57 @@ body.modo-oscuro .movimiento-item:hover {
     font-size: 1.1rem;
   }
 }
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--fondo-secundario, #1e1e1e);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 2rem;
+}
+
+.input-busqueda,
+.select-filtro {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--borde, #ccc);
+  border-radius: 8px;
+  outline: none;
+  background-color: var(--input-bg, #2a2a2a);
+  color: var(--texto, #fff);
+  transition: all 0.3s ease;
+}
+
+.input-busqueda::placeholder {
+  color: #aaa;
+}
+
+.input-busqueda:focus,
+.select-filtro:focus {
+  border-color: var(--color-acento, #00b894);
+  box-shadow: 0 0 5px var(--color-acento, #00b894);
+  background-color: var(--input-focus, #333);
+}
+
+.select-filtro {
+  cursor: pointer;
+}
+
+/* Para pantallas chicas */
+@media (max-width: 600px) {
+  .filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-busqueda,
+  .select-filtro {
+    width: 100%;
+  }
+}
