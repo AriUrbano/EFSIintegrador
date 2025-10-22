@@ -29,7 +29,6 @@ const Listado = () => {
 
   return (
     <div className="listado-container">
-      <h1 className="titulo">💰 Listado de Movimientos</h1>
 
 
       <div className="filtros">
@@ -52,7 +51,7 @@ const Listado = () => {
               {cat.etiqueta}
             </option>
           ))}
-        </select>
+        </select> 
 
         <select
           value={filtroTipo}

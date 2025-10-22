@@ -1,0 +1,323 @@
+.formulario-container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #001489 0%, #0033a0 50%, #001489 100%);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.formulario-container h1 {
+  color: #ffd100;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.formulario {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 20, 137, 0.3);
+  border: 3px solid #ffd100;
+  backdrop-filter: blur(10px);
+}
+
+.campo {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #001489;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #001489;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+  color: #001489;
+  font-weight: 600;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: none;
+  border-color: #ffd100;
+  box-shadow: 0 0 0 3px rgba(255, 209, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.campo input.error,
+.campo select.error {
+  border-color: #d40000;
+  background-color: #fff5f5;
+  box-shadow: 0 0 0 3px rgba(212, 0, 0, 0.1);
+}
+
+.error-text {
+  color: #d40000;
+  font-size: 14px;
+  margin-top: 8px;
+  display: block;
+  font-weight: 600;
+  background: #fff5f5;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border-left: 4px solid #d40000;
+}
+
+/* Información del movimiento */
+.info-movimiento {
+  background: linear-gradient(135deg, #ffd100, #ffde40);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  border: 2px solid #001489;
+  box-shadow: 0 4px 15px rgba(0, 20, 137, 0.2);
+}
+
+.info-movimiento p {
+  margin: 8px 0;
+  color: #001489;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.info-movimiento strong {
+  color: #001489;
+  text-transform: uppercase;
+}
+
+.botones {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 16px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #001489, #0033a0);
+  color: #ffd100;
+  border: 2px solid #ffd100;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0033a0, #001489);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 20, 137, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  color: white;
+  border: 2px solid #495057;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5a6268, #495057);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Efectos especiales para selects */
+.campo select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23001489'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 20px;
+  padding-right: 50px;
+}
+
+/* Placeholder con estilo */
+.campo input::placeholder {
+  color: #6c757d;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+/* MODO OSCURO BOCA */
+body.modo-oscuro .formulario-container {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+}
+
+body.modo-oscuro .formulario-container h1 {
+  color: #ffd100;
+  text-shadow: 2px 2px 8px rgba(255, 209, 0, 0.3);
+}
+
+body.modo-oscuro .formulario {
+  background: rgba(30, 30, 30, 0.95);
+  border: 3px solid #ffd100;
+  box-shadow: 0 8px 32px rgba(255, 209, 0, 0.2);
+}
+
+body.modo-oscuro .campo label {
+  color: #ffd100;
+}
+
+body.modo-oscuro .campo input,
+body.modo-oscuro .campo select {
+  background: #2d2d2d;
+  color: #ffd100;
+  border: 2px solid #ffd100;
+}
+
+body.modo-oscuro .campo input:focus,
+body.modo-oscuro .campo select:focus {
+  border-color: #001489;
+  box-shadow: 0 0 0 3px rgba(0, 20, 137, 0.5);
+}
+
+body.modo-oscuro .campo input.error,
+body.modo-oscuro .campo select.error {
+  border-color: #ff6b6b;
+  background-color: #3a2a2a;
+}
+
+body.modo-oscuro .error-text {
+  color: #ff6b6b;
+  background: #3a2a2a;
+  border-left: 4px solid #ff6b6b;
+}
+
+body.modo-oscuro .info-movimiento {
+  background: linear-gradient(135deg, #001489, #0033a0);
+  border: 2px solid #ffd100;
+}
+
+body.modo-oscuro .info-movimiento p {
+  color: #ffd100;
+}
+
+body.modo-oscuro .info-movimiento strong {
+  color: #ffffff;
+}
+
+body.modo-oscuro .btn-primary {
+  background: linear-gradient(135deg, #ffd100, #ffde40);
+  color: #001489;
+  border: 2px solid #001489;
+}
+
+body.modo-oscuro .btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ffde40, #ffd100);
+}
+
+/* Animaciones */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.formulario {
+  animation: pulse 2s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .formulario-container {
+    padding: 20px 15px;
+  }
+  
+  .formulario-container h1 {
+    font-size: 2rem;
+  }
+  
+  .formulario {
+    padding: 25px;
+  }
+  
+  .botones {
+    flex-direction: column;
+  }
+  
+  .btn {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+  
+  .info-movimiento {
+    padding: 15px;
+  }
+  
+  .campo label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario-container {
+    padding: 15px 10px;
+  }
+  
+  .formulario-container h1 {
+    font-size: 1.8rem;
+  }
+  
+  .formulario {
+    padding: 20px;
+  }
+  
+  .campo input,
+  .campo select {
+    padding: 12px 14px;
+  }
+}
