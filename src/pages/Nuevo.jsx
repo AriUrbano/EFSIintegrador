@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { categorias } from '../data/data';
 import { useNavigate } from 'react-router-dom';
-import './FormularioPage.css';
+import { esquemaValidacionMovimiento } from '../utils/validaciones';
+import './Formulario.css';
 
 const Nuevo = () => {
   const { agregarMovimiento } = useApp();
@@ -17,13 +18,15 @@ const Nuevo = () => {
   });
 
   const [errores, setErrores] = useState({});
+  const [enviando, setEnviando] = useState(false);
 
   const manejarCambio = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: name === 'monto' ? (value === '' ? '' : Number(value)) : value
     }));
+    // Limpiar error del campo al escribir
     if (errores[name]) {
       setErrores(prev => ({
         ...prev,
@@ -32,37 +35,28 @@ const Nuevo = () => {
     }
   };
 
-  const validarFormulario = () => {
-    const nuevosErrores = {};
-
-    if (formData.descripcion.length < 3) {
-      nuevosErrores.descripcion = 'La descripción debe tener al menos 3 caracteres';
+  const validarFormulario = async () => {
+    try {
+      await esquemaValidacionMovimiento.validate(formData, { abortEarly: false });
+      setErrores({});
+      return true;
+    } catch (error) {
+      const nuevosErrores = {};
+      error.inner.forEach(err => {
+        nuevosErrores[err.path] = err.message;
+      });
+      setErrores(nuevosErrores);
+      return false;
     }
-
-    if (!formData.categoria) {
-      nuevosErrores.categoria = 'Selecciona una categoría';
-    }
-
-    if (formData.monto <= 0 || !formData.monto) {
-      nuevosErrores.monto = 'El monto debe ser positivo';
-    }
-
-    if (!formData.fecha) {
-      nuevosErrores.fecha = 'La fecha es obligatoria';
-    }
-
-    if (formData.fecha && new Date(formData.fecha) > new Date()) {
-      nuevosErrores.fecha = 'La fecha no puede ser futura';
-    }
-
-    setErrores(nuevosErrores);
-    return Object.keys(nuevosErrores).length === 0;
   };
 
-  const manejarEnvio = (e) => {
+  const manejarEnvio = async (e) => {
     e.preventDefault();
+    setEnviando(true);
     
-    if (!validarFormulario()) {
+    const esValido = await validarFormulario();
+    if (!esValido) {
+      setEnviando(false);
       return;
     }
 
@@ -75,17 +69,19 @@ const Nuevo = () => {
         fecha: formData.fecha
       };
 
-      agregarMovimiento(datosMovimiento);
+      await agregarMovimiento(datosMovimiento);
       navigate('/');
       
     } catch (error) {
       console.error('Error guardando movimiento:', error);
       alert('Error al guardar el movimiento');
+    } finally {
+      setEnviando(false);
     }
   };
 
   return (
-    <div className="formulario-page">
+    <div className="formulario-container">
       <h1>Nuevo Movimiento</h1>
       
       <form onSubmit={manejarEnvio} className="formulario">
@@ -129,10 +125,12 @@ const Nuevo = () => {
             name="tipo"
             value={formData.tipo}
             onChange={manejarCambio}
+            className={errores.tipo ? 'error' : ''}
           >
             <option value="gasto">Gasto</option>
             <option value="ingreso">Ingreso</option>
           </select>
+          {errores.tipo && <span className="error-text">{errores.tipo}</span>}
         </div>
 
         <div className="campo">
@@ -165,13 +163,18 @@ const Nuevo = () => {
         </div>
 
         <div className="botones">
-          <button type="submit" className="btn btn-primary">
-            Guardar Movimiento
+          <button 
+            type="submit" 
+            className="btn btn-primary"
+            disabled={enviando}
+          >
+            {enviando ? 'Guardando...' : 'Guardar Movimiento'}
           </button>
           <button 
             type="button" 
             className="btn btn-secondary"
             onClick={() => navigate('/')}
+            disabled={enviando}
           >
             Cancelar
           </button>

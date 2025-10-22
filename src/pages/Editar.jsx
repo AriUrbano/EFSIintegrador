@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { categorias } from '../data/data';
 import { useNavigate, useParams } from 'react-router-dom';
-import './FormularioPage.css';
+import { esquemaValidacionMovimiento } from '../utils/validaciones';
+import './Formulario.css';
 
 const Editar = () => {
   const { movimientos, actualizarMovimiento } = useApp();
@@ -20,6 +21,7 @@ const Editar = () => {
   });
 
   const [errores, setErrores] = useState({});
+  const [enviando, setEnviando] = useState(false);
 
   useEffect(() => {
     if (movimientoEditar) {
@@ -37,7 +39,7 @@ const Editar = () => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: name === 'monto' ? (value === '' ? '' : Number(value)) : value
     }));
     if (errores[name]) {
       setErrores(prev => ({
@@ -47,37 +49,28 @@ const Editar = () => {
     }
   };
 
-  const validarFormulario = () => {
-    const nuevosErrores = {};
-
-    if (formData.descripcion.length < 3) {
-      nuevosErrores.descripcion = 'La descripción debe tener al menos 3 caracteres';
+  const validarFormulario = async () => {
+    try {
+      await esquemaValidacionMovimiento.validate(formData, { abortEarly: false });
+      setErrores({});
+      return true;
+    } catch (error) {
+      const nuevosErrores = {};
+      error.inner.forEach(err => {
+        nuevosErrores[err.path] = err.message;
+      });
+      setErrores(nuevosErrores);
+      return false;
     }
-
-    if (!formData.categoria) {
-      nuevosErrores.categoria = 'Selecciona una categoría';
-    }
-
-    if (formData.monto <= 0 || !formData.monto) {
-      nuevosErrores.monto = 'El monto debe ser positivo';
-    }
-
-    if (!formData.fecha) {
-      nuevosErrores.fecha = 'La fecha es obligatoria';
-    }
-
-    if (formData.fecha && new Date(formData.fecha) > new Date()) {
-      nuevosErrores.fecha = 'La fecha no puede ser futura';
-    }
-
-    setErrores(nuevosErrores);
-    return Object.keys(nuevosErrores).length === 0;
   };
 
-  const manejarEnvio = (e) => {
+  const manejarEnvio = async (e) => {
     e.preventDefault();
+    setEnviando(true);
     
-    if (!validarFormulario()) {
+    const esValido = await validarFormulario();
+    if (!esValido) {
+      setEnviando(false);
       return;
     }
 
@@ -90,19 +83,22 @@ const Editar = () => {
         fecha: formData.fecha
       };
 
-      actualizarMovimiento(id, datosMovimiento);
+      await actualizarMovimiento(id, datosMovimiento);
       navigate('/');
       
     } catch (error) {
       console.error('Error actualizando movimiento:', error);
       alert('Error al actualizar el movimiento');
+    } finally {
+      setEnviando(false);
     }
   };
 
   if (!movimientoEditar) {
     return (
-      <div className="formulario-page">
+      <div className="formulario-container">
         <h1>Movimiento no encontrado</h1>
+        <p>El movimiento que intentas editar no existe.</p>
         <button 
           className="btn btn-secondary"
           onClick={() => navigate('/')}
@@ -114,7 +110,7 @@ const Editar = () => {
   }
 
   return (
-    <div className="formulario-page">
+    <div className="formulario-container">
       <h1>Editar Movimiento</h1>
       
       <form onSubmit={manejarEnvio} className="formulario">
@@ -158,10 +154,12 @@ const Editar = () => {
             name="tipo"
             value={formData.tipo}
             onChange={manejarCambio}
+            className={errores.tipo ? 'error' : ''}
           >
             <option value="gasto">Gasto</option>
             <option value="ingreso">Ingreso</option>
           </select>
+          {errores.tipo && <span className="error-text">{errores.tipo}</span>}
         </div>
 
         <div className="campo">
@@ -193,14 +191,24 @@ const Editar = () => {
           {errores.fecha && <span className="error-text">{errores.fecha}</span>}
         </div>
 
+        <div className="info-movimiento">
+          <p><strong>ID:</strong> {movimientoEditar.id}</p>
+          <p><strong>Creado:</strong> {new Date(movimientoEditar.fecha).toLocaleDateString('es-AR')}</p>
+        </div>
+
         <div className="botones">
-          <button type="submit" className="btn btn-primary">
-            Actualizar Movimiento
+          <button 
+            type="submit" 
+            className="btn btn-primary"
+            disabled={enviando}
+          >
+            {enviando ? 'Actualizando...' : 'Actualizar Movimiento'}
           </button>
           <button 
             type="button" 
             className="btn btn-secondary"
             onClick={() => navigate('/')}
+            disabled={enviando}
           >
             Cancelar
           </button>
