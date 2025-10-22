@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section">
-          <h3>Mi Presupuesto</h3>
+          <h3>Prosupuesto Boca Juniors</h3>
           <p>Gestiona tus finanzas personales de manera simple y efectiva.</p>
         </div>
         
@@ -30,7 +30,7 @@ const Footer = () => {
       </div>
       
       <div className="footer-bottom">
-        <p>&copy; {currentYear} Mi Presupuesto. Todos los derechos reservados.</p>
+        <p>&copy; {currentYear} Presupuesto Boca Juniors. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

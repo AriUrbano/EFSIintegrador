@@ -22,7 +22,7 @@ function Tema() {
       className="boton-tema"
       onClick={() => setModoOscuro(!modoOscuro)}
     >
-      {modoOscuro ? "🌙 Oscuro" : "☀️ Claro"}
+      {modoOscuro ? "Oscuro" : "Claro"}
     </button>
   );
 }

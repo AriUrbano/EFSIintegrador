@@ -8,7 +8,7 @@ const Header = () => {
     <header className="header">
       <div className="header-content">
         <div className="header-title">
-          <h1>💰 Mi Presupuesto</h1>
+          <h1>Presupuesto Boca Juniors</h1>
         </div>
         <div className="navbar-container">
           <Navbar />
