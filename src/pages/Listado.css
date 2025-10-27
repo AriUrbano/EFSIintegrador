@@ -448,3 +448,22 @@ body.modo-oscuro .mensaje-cargando {
     padding: 10px;
   }
 }
+
+.filtros input[type="date"],
+.filtros input[type="number"] {
+  flex: 1;
+  min-width: 150px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--borde, #ccc);
+  border-radius: 8px;
+  background-color: var(--input-bg, #fff);
+  color: var(--texto, #333);
+  transition: all 0.3s ease;
+}
+
+.filtros input[type="date"]:focus,
+.filtros input[type="number"]:focus {
+  border-color: var(--color-acento, #004aad);
+  box-shadow: 0 0 5px var(--color-acento, #004aad);
+}
