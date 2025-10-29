@@ -1,0 +1,211 @@
+/* ESTADOS DE CARGA */
+.cargando-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #001489;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .cargando-texto {
+    color: #001489;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  /* ESTADOS VACÍOS */
+  .estado-vacio {
+    text-align: center;
+    padding: 60px 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 20, 137, 0.1);
+    border: 2px dashed #001489;
+    margin: 20px auto;
+    max-width: 500px;
+  }
+  
+  .estado-vacio-icono {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+  
+  .estado-vacio-titulo {
+    color: #001489;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  .estado-vacio-descripcion {
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+  
+  .boton-accion-principal {
+    background: linear-gradient(135deg, #001489, #0033a0);
+    color: #ffd100;
+    border: 2px solid #ffd100;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .boton-accion-principal:hover {
+    background: linear-gradient(135deg, #0033a0, #001489);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 20, 137, 0.3);
+  }
+  
+  /* MENSAJES DE ÉXITO Y ERROR */
+  .mensaje-flotante {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    z-index: 10000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: slideInRight 0.3s ease-out;
+    max-width: 400px;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .mensaje-exito {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border-left: 4px solid #155724;
+  }
+  
+  .mensaje-error {
+    background: linear-gradient(135deg, #dc3545, #e83e8c);
+    color: white;
+    border-left: 4px solid #721c24;
+  }
+  
+  .mensaje-info {
+    background: linear-gradient(135deg, #17a2b8, #6f42c1);
+    color: white;
+    border-left: 4px solid #0c5460;
+  }
+  
+  /* TOOLTIPS */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltip-texto {
+    visibility: hidden;
+    width: 200px;
+    background: #001489;
+    color: #ffd100;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .tooltip .tooltip-texto::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #001489 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltip-texto {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* MEJORAS RESPONSIVE */
+  @media (max-width: 768px) {
+    .estado-vacio {
+      padding: 40px 20px;
+      margin: 15px;
+    }
+    
+    .estado-vacio-icono {
+      font-size: 3rem;
+    }
+    
+    .estado-vacio-titulo {
+      font-size: 1.3rem;
+    }
+    
+    .mensaje-flotante {
+      top: 10px;
+      right: 10px;
+      left: 10px;
+      max-width: none;
+    }
+  }
+  
+  /* MODO OSCURO */
+  body.modo-oscuro .cargando-texto {
+    color: #ffd100;
+  }
+  
+  body.modo-oscuro .estado-vacio {
+    background: #2d2d2d;
+    border: 2px dashed #ffd100;
+  }
+  
+  body.modo-oscuro .estado-vacio-titulo {
+    color: #ffd100;
+  }
+  
+  body.modo-oscuro .estado-vacio-descripcion {
+    color: #bdc3c7;
+  } 

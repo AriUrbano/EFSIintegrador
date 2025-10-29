@@ -4,18 +4,20 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <NavLink to="/" className="nav-item">
-        Home
-      </NavLink>
-      <NavLink to="/Nuevo" className="nav-item">
-        Nuevo
-      </NavLink>
-      <NavLink to="/Resumen" className="nav-item">
-        Resumen
-      </NavLink>
-      <NavLink to="/Ajustes" className="nav-item">
-        Ajustes
-      </NavLink>
+      <div className="nav-container">
+        <NavLink to="/" className="nav-item" end>
+          <span className="nav-text">Home</span>
+        </NavLink>
+        <NavLink to="/nuevo" className="nav-item">
+          <span className="nav-text">Nuevo</span>
+        </NavLink>
+        <NavLink to="/resumen" className="nav-item">
+          <span className="nav-text">Resumen</span>
+        </NavLink>
+        <NavLink to="/ajustes" className="nav-item">
+          <span className="nav-text">Ajustes</span>
+        </NavLink>
+      </div>
     </nav>
   );
 }
