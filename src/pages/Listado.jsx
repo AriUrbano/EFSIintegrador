@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { categorias } from "../data/data";
-import { useAlmacenamientoMovimientos } from "../hooks/useLocalStorage";
+import { useApp } from "../context/AppContext"; // CAMBIAR ESTA LÍNEA
 import { useNavigate } from "react-router-dom";
 import "./Listado.css";
 import "../Styles/EstilosGLobales.css";
 
 const Listado = () => {
-  const { movimientos, eliminarMovimiento, cargando } = useAlmacenamientoMovimientos();
+  const { movimientos, eliminarMovimiento, cargando } = useApp(); // CAMBIAR ESTA LÍNEA
   const navigate = useNavigate();
 
   const [busqueda, setBusqueda] = useState("");
