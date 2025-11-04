@@ -1,10 +1,12 @@
 import React from "react";
+import { useTema } from "../context/TemaContext";
 import Tema from "../components/Tema";
 import { useAlmacenamientoMovimientos } from "../hooks/useLocalStorage";
 import "./Ajustes.css";
 
 const Ajustes = () => {
   const { limpiarMovimientos } = useAlmacenamientoMovimientos();
+  const { modoOscuro } = useTema();
 
   const manejarLimpiarDatos = () => {
     if (window.confirm("¿Seguro que querés borrar todos los movimientos guardados?")) {
@@ -19,8 +21,8 @@ const Ajustes = () => {
 
       <div className="seccion-ajuste">
         <h3>Tema visual</h3>
-        <p>Alternar entre modo claro y oscuro.</p>
-        <Tema /> {/* Usa el componente Tema existente */}
+        <p>Alternar entre modo claro y oscuro.</p>        
+        <Tema />
       </div>
 
       <hr className="separador-ajustes" />

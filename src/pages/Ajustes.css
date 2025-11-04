@@ -69,3 +69,16 @@ body.modo-oscuro .boton-eliminar-datos {
 body.modo-oscuro .boton-eliminar-datos:hover {
   background-color: #d32f2f;
 }
+/* En la sección de ajustes, el botón de tema se ve más grande */
+.ajustes-contenedor .boton-tema {
+  padding: 12px 24px;
+  font-size: 1rem;
+  min-width: 120px;
+}
+
+/* Modo oscuro para ajustes */
+body.modo-oscuro .ajustes-contenedor .boton-tema {
+  background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 100%);
+  color: #ffd100;
+  border-color: #ffd100;
+}
