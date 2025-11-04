@@ -1,28 +1,15 @@
-import { useEffect, useState } from "react";
+import { useTema } from '../context/TemaContext';
 import "./Tema.css";
 
 function Tema() {
-  const [modoOscuro, setModoOscuro] = useState(
-    () => localStorage.getItem("modoOscuro") === "true"
-  );
-
-  useEffect(() => {
-    if (modoOscuro) {
-      document.body.classList.add("modo-oscuro");
-      document.body.classList.remove("modo-claro");
-    } else {
-      document.body.classList.add("modo-claro");
-      document.body.classList.remove("modo-oscuro");
-    }
-    localStorage.setItem("modoOscuro", modoOscuro);
-  }, [modoOscuro]);
+  const { modoOscuro, toggleTema } = useTema();
 
   return (
     <button
       className="boton-tema"
-      onClick={() => setModoOscuro(!modoOscuro)}
+      onClick={toggleTema}
     >
-      {modoOscuro ? "Oscuro" : "Claro"}
+      {modoOscuro ? "OSCURO" : "CLARO"}
     </button>
   );
 }

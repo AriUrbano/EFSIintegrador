@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import { AppProvider } from './context/AppContext';
-
+import { TemaProvider } from './context/TemaContext';
 import Listado from './pages/Listado';
 import Nuevo from './pages/Nuevo';
 import Editar from './pages/Editar';
@@ -12,6 +12,7 @@ import './App.css';
 function App() {
   return (
     <AppProvider>
+       <TemaProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainLayout />}>
@@ -23,7 +24,9 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </TemaProvider>
     </AppProvider>
+    
   );
 }
 
