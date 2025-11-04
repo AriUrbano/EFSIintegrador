@@ -1,11 +1,11 @@
 import React from "react";
 import { useTema } from "../context/TemaContext";
 import Tema from "../components/Tema";
-import { useAlmacenamientoMovimientos } from "../hooks/useLocalStorage";
+import { useApp } from "../context/AppContext"; 
 import "./Ajustes.css";
 
 const Ajustes = () => {
-  const { limpiarMovimientos } = useAlmacenamientoMovimientos();
+  const { limpiarMovimientos } = useApp(); 
   const { modoOscuro } = useTema();
 
   const manejarLimpiarDatos = () => {
